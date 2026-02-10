@@ -15,15 +15,17 @@ export default function Home() {
   const prevFocusRef = useRef<HTMLElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 
+  const basePath = process.env.NODE_ENV === 'production' ? '/theresa-nkpati' : '';
+
   const images = [
-    { src: '/img/1.jpeg', alt: 'Theresa Yawa Nkpati 1' },
-    { src: '/img/2.jpeg', alt: 'Theresa Yawa Nkpati 2' },
-    { src: '/img/3.jpeg', alt: 'Theresa Yawa Nkpati 3' },
-    { src: '/img/4.jpeg', alt: 'Theresa Yawa Nkpati 4' },
-    { src: '/img/5.jpeg', alt: 'Theresa Yawa Nkpati 5' },
-    { src: '/img/6.jpeg', alt: 'Theresa Yawa Nkpati 6' },
-    { src: '/img/7.jpeg', alt: 'Theresa Yawa Nkpati 7' },
-    { src: '/img/8.jpeg', alt: 'Theresa Yawa Nkpati 8' },
+    { src: `${basePath}/img/1.jpeg`, alt: 'Theresa Yawa Nkpati 1' },
+    { src: `${basePath}/img/2.jpeg`, alt: 'Theresa Yawa Nkpati 2' },
+    { src: `${basePath}/img/3.jpeg`, alt: 'Theresa Yawa Nkpati 3' },
+    { src: `${basePath}/img/4.jpeg`, alt: 'Theresa Yawa Nkpati 4' },
+    { src: `${basePath}/img/5.jpeg`, alt: 'Theresa Yawa Nkpati 5' },
+    { src: `${basePath}/img/6.jpeg`, alt: 'Theresa Yawa Nkpati 6' },
+    { src: `${basePath}/img/7.jpeg`, alt: 'Theresa Yawa Nkpati 7' },
+    { src: `${basePath}/img/8.jpeg`, alt: 'Theresa Yawa Nkpati 8' },
   ];
 
   useEffect(() => {
