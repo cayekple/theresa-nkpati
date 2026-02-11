@@ -175,7 +175,7 @@ export default function App() {
             {/* Header */}
             <div className="text-center mb-16 animate-fade-in">
               <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white tracking-tight">
-                In Loving Memory
+                Funeral Arrangement
               </h1>
               <div className="h-1 w-24 bg-gray-300 dark:bg-gray-700 mx-auto mb-6 rounded-full"></div>
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
