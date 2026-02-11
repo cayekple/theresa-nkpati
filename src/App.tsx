@@ -181,9 +181,17 @@ export default function App() {
               <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
                 Theresa Yawa Nkpati
               </h2>
-              <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 font-light tracking-wide">
+              <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 font-light tracking-wide mb-6">
                 1968 – 2026
               </p>
+              <div className="max-w-2xl mx-auto space-y-2">
+                <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 font-medium">
+                  📍 Venue: Kwamekrom Kingdom Hall
+                </p>
+                <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 font-medium">
+                  📅 Date: 21st February 2026
+                </p>
+              </div>
             </div>
 
             {/* Main Content Grid */}
