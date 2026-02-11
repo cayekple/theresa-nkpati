@@ -8,6 +8,7 @@ export default function App() {
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [activeSection, setActiveSection] = useState('home');
+  const [bioModalOpen, setBioModalOpen] = useState(false);
 
   const prevFocusRef = useRef<HTMLElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
@@ -78,7 +79,7 @@ export default function App() {
 
   useEffect(() => {
     let ticking = false;
-    const ids = ['home', 'gallery', 'songs', 'program'];
+    const ids = ['home', 'songs', 'gallery'];
     const getActive = () => {
       const y = window.scrollY || document.documentElement.scrollTop || 0;
       const offset = 120;
@@ -135,9 +136,8 @@ export default function App() {
           <div className="flex items-center gap-2">
             <div className="hidden md:flex space-x-2 text-sm">
               <a href="#home" className={linkClass('home')}>Home</a>
-              <a href="#gallery" className={linkClass('gallery')}>Gallery</a>
               <a href="#songs" className={linkClass('songs')}>Songs</a>
-              <a href="#program" className={linkClass('program')}>Program</a>
+              <a href="#gallery" className={linkClass('gallery')}>Gallery</a>
             </div>
             <button
               onClick={() => setTheme(theme === 'light' ? 'dark' : 'light')}
@@ -160,9 +160,8 @@ export default function App() {
           <div className="md:hidden border-t border-gray-200 dark:border-gray-800 bg-white dark:bg-gray-900">
             <div className="flex flex-col space-y-1 px-4 py-3">
               <a href="#home" onClick={() => setMenuOpen(false)} className={linkClass('home')}>Home</a>
-              <a href="#gallery" onClick={() => setMenuOpen(false)} className={linkClass('gallery')}>Gallery</a>
               <a href="#songs" onClick={() => setMenuOpen(false)} className={linkClass('songs')}>Songs</a>
-              <a href="#program" onClick={() => setMenuOpen(false)} className={linkClass('program')}>Program</a>
+              <a href="#gallery" onClick={() => setMenuOpen(false)} className={linkClass('gallery')}>Gallery</a>
             </div>
           </div>
         )}
@@ -217,7 +216,8 @@ export default function App() {
                 <h3 className="text-3xl sm:text-4xl font-bold mb-8 text-gray-900 dark:text-white">
                   Biography
                 </h3>
-                <div className="prose prose-lg max-w-none dark:prose-invert text-gray-700 dark:text-gray-300 leading-relaxed space-y-6 text-justify">
+                {/* Desktop: Full text visible */}
+                <div className="hidden md:block prose prose-lg max-w-none dark:prose-invert text-gray-700 dark:text-gray-300 leading-relaxed space-y-6 text-justify">
                   <p>
                     Theresa Yawa Nkpati, an illustrious daughter, devoted mother, and steadfast servant of Jehovah, was born in 1968 at Aboabonyigbe, Bowiri, in the Oti Region of Ghana. She was the cherished daughter of Mr. Martin Yao Nkpati and Madam Christine Kpeglo, natives of Tsieve in Togo. Theresa was the fifth of six siblings. Sadly, three of her siblings predeceased her, including one who passed away at a very young age. At the time of her passing, she was survived by two older siblings. She also had six half-siblings.
                   </p>
@@ -249,41 +249,61 @@ export default function App() {
                     These precious Bible promises shaped Theresa&apos;s faith, sustained her through life&apos;s trials, and gave her unwavering confidence in Jehovah&apos;s loving purpose. It is her heartfelt hope that all who reflect on these scriptures—especially her beloved daughters and grandchildren—will draw comfort, build strong faith, and look forward with certainty to the fulfillment of Jehovah&apos;s promises.
                   </p>
                 </div>
+                {/* Mobile: Preview with Read More button */}
+                <div className="md:hidden">
+                  <div className="prose prose-lg max-w-none dark:prose-invert text-gray-700 dark:text-gray-300 leading-relaxed space-y-4 text-justify">
+                    <p>
+                      Theresa Yawa Nkpati, an illustrious daughter, devoted mother, and steadfast servant of Jehovah, was born in 1968 at Aboabonyigbe, Bowiri, in the Oti Region of Ghana...
+                    </p>
+                  </div>
+                  <button
+                    onClick={() => setBioModalOpen(true)}
+                    className="mt-6 px-6 py-3 bg-gray-900 text-white rounded-lg hover:bg-gray-700 transition-colors focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 dark:bg-white dark:text-gray-900 dark:hover:bg-gray-200"
+                  >
+                    Read Full Biography
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            {/* Program Section - Moved here after Biography */}
+            <div className="mt-20">
+              <div className="text-center mb-12">
+                <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                  Program
+                </h2>
+                <div className="h-1 w-20 bg-gray-300 dark:bg-gray-700 mx-auto rounded-full"></div>
+              </div>
+              <div className="max-w-4xl mx-auto bg-white dark:bg-gray-950 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 md:p-10 shadow-lg">
+                <div className="space-y-6">
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
+                    <span className="font-semibold text-gray-900 dark:text-white text-lg">Chairman&apos;s remarks</span>
+                    <span className="text-gray-600 dark:text-gray-400 font-medium">9:00 am</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
+                    <span className="font-semibold text-gray-900 dark:text-white text-lg">Opening song 3 and prayer</span>
+                    <span className="text-gray-600 dark:text-gray-400 font-medium">9:05 am</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
+                    <span className="font-semibold text-gray-900 dark:text-white text-lg">Funeral discourse</span>
+                    <span className="text-gray-600 dark:text-gray-400 font-medium">9:10 am</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
+                    <span className="font-semibold text-gray-900 dark:text-white text-lg">Closing song 151 and prayer</span>
+                    <span className="text-gray-600 dark:text-gray-400 font-medium">9:40 am</span>
+                  </div>
+                  <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 py-2 transition-colors duration-200 rounded-lg">
+                    <span className="font-semibold text-gray-900 dark:text-white text-lg">Chairman&apos;s closing remarks</span>
+                    <span className="text-gray-600 dark:text-gray-400 font-medium"></span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Gallery Section */}
-        <section id="gallery" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-          <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
-              <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-                Gallery
-              </h2>
-              <div className="h-1 w-20 bg-gray-300 dark:bg-gray-700 mx-auto rounded-full"></div>
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {images.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => onOpenLightboxAt(i)}
-                  className="group relative aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 dark:focus:ring-white ring-1 ring-gray-900/5 dark:ring-white/10"
-                >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
-                </button>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Songs Section */}
-        <section id="songs" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950">
+        <section id="songs" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
           <div className="max-w-5xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
@@ -403,42 +423,91 @@ export default function App() {
           </div>
         </section>
 
-        {/* Program Section */}
-        <section id="program" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
-          <div className="max-w-4xl mx-auto">
+        {/* Gallery Section */}
+        <section id="gallery" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950">
+          <div className="max-w-7xl mx-auto">
             <div className="text-center mb-12">
               <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
-                Program
+                Gallery
               </h2>
               <div className="h-1 w-20 bg-gray-300 dark:bg-gray-700 mx-auto rounded-full"></div>
             </div>
-            <div className="bg-white dark:bg-gray-950 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 md:p-10 shadow-lg">
-              <div className="space-y-6">
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
-                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Chairman&apos;s remarks</span>
-                  <span className="text-gray-600 dark:text-gray-400 font-medium">9:00 am</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
-                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Opening song 3 and prayer</span>
-                  <span className="text-gray-600 dark:text-gray-400 font-medium">9:05 am</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
-                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Funeral discourse</span>
-                  <span className="text-gray-600 dark:text-gray-400 font-medium">9:10 am</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
-                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Closing song 151 and prayer</span>
-                  <span className="text-gray-600 dark:text-gray-400 font-medium">9:40 am</span>
-                </div>
-                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 py-2 transition-colors duration-200 rounded-lg">
-                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Chairman&apos;s closing remarks</span>
-                  <span className="text-gray-600 dark:text-gray-400 font-medium"></span>
-                </div>
-              </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+              {images.map((img, i) => (
+                <button
+                  key={i}
+                  onClick={() => onOpenLightboxAt(i)}
+                  className="group relative aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 dark:focus:ring-white ring-1 ring-gray-900/5 dark:ring-white/10"
+                >
+                  <img
+                    src={img.src}
+                    alt={img.alt}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                </button>
+              ))}
             </div>
           </div>
         </section>
+
       </main>
+
+      {/* Biography Modal */}
+      {bioModalOpen && (
+        <div
+          className="fixed inset-0 z-50 bg-black/80 flex items-center justify-center p-4"
+          onClick={() => setBioModalOpen(false)}
+        >
+          <div
+            className="bg-white dark:bg-gray-900 rounded-2xl max-w-3xl max-h-[85vh] overflow-y-auto p-8 relative shadow-2xl"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <button
+              onClick={() => setBioModalOpen(false)}
+              className="absolute top-4 right-4 text-gray-900 dark:text-white text-2xl w-10 h-10 flex items-center justify-center rounded-full hover:bg-gray-100 dark:hover:bg-gray-800 focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
+              aria-label="Close biography"
+            >
+              ✕
+            </button>
+            <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white pr-8">
+              Biography
+            </h3>
+            <div className="prose prose-lg max-w-none dark:prose-invert text-gray-700 dark:text-gray-300 leading-relaxed space-y-6 text-justify">
+              <p>
+                Theresa Yawa Nkpati, an illustrious daughter, devoted mother, and steadfast servant of Jehovah, was born in 1968 at Aboabonyigbe, Bowiri, in the Oti Region of Ghana. She was the cherished daughter of Mr. Martin Yao Nkpati and Madam Christine Kpeglo, natives of Tsieve in Togo. Theresa was the fifth of six siblings. Sadly, three of her siblings predeceased her, including one who passed away at a very young age. At the time of her passing, she was survived by two older siblings. She also had six half-siblings.
+              </p>
+              <p>
+                In pursuit of a better life, her parents migrated to Ghana, where they engaged in cocoa farming. Through this upbringing, Theresa learned the values of resilience, hard work, and perseverance—qualities that shaped her character throughout her life.
+              </p>
+              <p>
+                Theresa began her primary education at Takrabe. At the age of eight, she later moved to Sogakope to live with her elder sister, where she continued and completed her primary education from 1975 to 1984. When her sister later got married and travelled to Nigeria, Theresa moved to Togo to stay with her aunt, who trained her in trading. This experience sharpened her entrepreneurial skills and instilled in her discipline, prudence, and a strong work ethic.
+              </p>
+              <p>
+                In 1988, Theresa entered into matrimony with Kofi Senyo Attivor. Their union was blessed with two daughters, Akpedze Attivor and Irene Attivor, who became the center of her love, care, and dedication. She was also blessed with three grandchildren, who brought her great joy and pride. In 1998, she was diagnosed with diabetes. Through resilience, determination, and consistent medical care, she managed the condition successfully and continued to live a productive and purposeful life.
+              </p>
+              <p>
+                Upon returning to Ghana, Theresa first focused on restoring her health. She later engaged in farming for some time, made a brief return to Togo, and eventually settled permanently in Ghana. It was after this period that she established and operated a provision shop, dealing in assorted goods. Her honesty, diligence, and commitment earned her the respect of customers and members of the community while faithfully providing for her family.
+              </p>
+              <p>
+                Theresa was deeply spiritual. Her personal study of the Bible with Jehovah&apos;s Witnesses convinced her that Jehovah God is one, that the dead are conscious of nothing, and that there is a sure hope of a resurrection. She symbolized her dedication to Jehovah by baptism on 21st December 2002. From then on, she zealously participated in the preaching and teaching work, sharing Bible truths that brought comfort and hope to many. It was her heartfelt desire that her daughters would one day make a personal decision to worship Jehovah and serve Him faithfully.
+              </p>
+              <p>
+                Theresa Yawa Nkpati lived a life marked by faith, perseverance, integrity, and love. Her fine example continues to inspire all who knew her.
+              </p>
+              <p>
+                She peacefully fell asleep in death on Wednesday, 21st January 2026. Though her passing has left a deep void, her legacy of love, integrity, and devotion to Jehovah remains alive in the hearts of her children, grandchildren, family, friends, and the wider community.
+              </p>
+              <p>
+                During her lifetime, scriptures such as Revelation 21:3–4, 1 Corinthians 15:55, and John 5:28–29 brought Theresa deep comfort and strengthened her faith. These reassuring Bible promises reminded her that Jehovah lovingly intends to wipe away every tear, bring an end to pain, mourning, and death, and grant a sure resurrection hope to those asleep in death. Today, these same scriptures continue to provide powerful consolation to all who mourn her passing, strengthening their confidence that death is not the end and that Jehovah&apos;s promises will surely be fulfilled.
+              </p>
+              <p>
+                These precious Bible promises shaped Theresa&apos;s faith, sustained her through life&apos;s trials, and gave her unwavering confidence in Jehovah&apos;s loving purpose. It is her heartfelt hope that all who reflect on these scriptures—especially her beloved daughters and grandchildren—will draw comfort, build strong faith, and look forward with certainty to the fulfillment of Jehovah&apos;s promises.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Lightbox */}
       {lightbox.open && (
