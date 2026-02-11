@@ -130,9 +130,9 @@ export default function Home() {
       </a>
 
       {/* Navigation */}
-      <nav className="sticky top-0 z-40 bg-white border-b border-gray-200 dark:bg-gray-900 dark:border-gray-800">
-        <div className="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
-          <a href="#home" className="text-xl font-bold text-gray-900 dark:text-white">
+      <nav className="sticky top-0 z-40 bg-white/95 backdrop-blur-sm border-b border-gray-200 shadow-sm dark:bg-gray-900/95 dark:border-gray-800">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex items-center justify-between">
+          <a href="#home" className="text-xl font-bold text-gray-900 dark:text-white transition-colors hover:text-gray-700 dark:hover:text-gray-300">
             Theresa Yawa Nkpati
           </a>
           <div className="flex items-center gap-2">
@@ -173,46 +173,49 @@ export default function Home() {
 
       <main id="mainContent">
         {/* Hero and Biography Combined Section */}
-        <section id="home" className="py-12 md:py-20 px-4">
-          <div className="max-w-6xl mx-auto">
+        <section id="home" className="py-12 md:py-20 px-4 sm:px-6 lg:px-8">
+          <div className="max-w-7xl mx-auto">
             {/* Header */}
-            <div className="text-center mb-12">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+            <div className="text-center mb-16 animate-fade-in">
+              <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6 text-gray-900 dark:text-white tracking-tight">
                 In Loving Memory
               </h1>
-              <h2 className="text-2xl md:text-3xl font-semibold mb-3 text-gray-800 dark:text-gray-200">
+              <div className="h-1 w-24 bg-gray-300 dark:bg-gray-700 mx-auto mb-6 rounded-full"></div>
+              <h2 className="text-2xl sm:text-3xl md:text-4xl font-semibold mb-4 text-gray-800 dark:text-gray-200">
                 Theresa Yawa Nkpati
               </h2>
-              <p className="text-lg text-gray-600 dark:text-gray-400">
+              <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-400 font-light tracking-wide">
                 1968 – 2026
               </p>
             </div>
 
             {/* Main Content Grid */}
-            <div className="grid md:grid-cols-[400px_1fr] gap-8 md:gap-12 items-start">
+            <div className="grid md:grid-cols-[420px_1fr] gap-10 md:gap-16 lg:gap-20 items-start">
               {/* Left Column - Image */}
-              <div className="mx-auto md:mx-0 md:sticky md:top-24">
+              <div className="mx-auto md:mx-0 md:sticky md:top-24 animate-slide-in-left">
                 <div className="w-full max-w-md">
-                  <Image
-                    src="/img/1.jpeg"
-                    alt="Theresa Yawa Nkpati"
-                    width={400}
-                    height={400}
-                    className="rounded-lg shadow-lg w-full"
-                    priority
-                  />
-                  <p className="text-base italic text-gray-700 dark:text-gray-300 mt-6 text-center">
+                  <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-gray-900/5 dark:ring-white/10">
+                    <Image
+                      src="/img/1.jpeg"
+                      alt="Theresa Yawa Nkpati"
+                      width={420}
+                      height={420}
+                      className="w-full object-cover"
+                      priority
+                    />
+                  </div>
+                  <p className="text-base sm:text-lg italic text-gray-700 dark:text-gray-300 mt-8 text-center leading-relaxed px-4">
                     &quot;An illustrious daughter, devoted mother, and steadfast servant of Jehovah&quot;
                   </p>
                 </div>
               </div>
 
               {/* Right Column - Biography */}
-              <div>
-                <h3 className="text-3xl font-bold mb-6 text-gray-900 dark:text-white">
+              <div className="animate-slide-in-right">
+                <h3 className="text-3xl sm:text-4xl font-bold mb-8 text-gray-900 dark:text-white">
                   Biography
                 </h3>
-                <div className="prose prose-lg max-w-none dark:prose-invert text-gray-700 dark:text-gray-300 leading-relaxed space-y-4">
+                <div className="prose prose-lg max-w-none dark:prose-invert text-gray-700 dark:text-gray-300 leading-relaxed space-y-6 text-justify">
                   <p>
                     Theresa Yawa Nkpati, an illustrious daughter, devoted mother, and steadfast servant of Jehovah, was born in 1968 at Aboabonyigbe, Bowiri, in the Oti Region of Ghana. She was the cherished daughter of Mr. Martin Yao Nkpati and Madam Christine Kpeglo, natives of Tsieve in Togo. Theresa was the fifth of six siblings. Sadly, three of her siblings predeceased her, including one who passed away at a very young age. At the time of her passing, she was survived by two older siblings. She also had six half-siblings.
                   </p>
@@ -250,25 +253,29 @@ export default function Home() {
         </section>
 
         {/* Gallery Section */}
-        <section id="gallery" className="py-16 px-4 bg-gray-50 dark:bg-gray-900">
-          <div className="max-w-6xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white">
-              Gallery
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+        <section id="gallery" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
+          <div className="max-w-7xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                Gallery
+              </h2>
+              <div className="h-1 w-20 bg-gray-300 dark:bg-gray-700 mx-auto rounded-full"></div>
+            </div>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
               {images.map((img, i) => (
                 <button
                   key={i}
                   onClick={() => onOpenLightboxAt(i)}
-                  className="relative aspect-square overflow-hidden rounded-lg hover:opacity-90 transition-opacity focus:outline-none focus:ring-2 focus:ring-gray-900 dark:focus:ring-white"
+                  className="group relative aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 dark:focus:ring-white ring-1 ring-gray-900/5 dark:ring-white/10"
                 >
                   <Image
                     src={img.src}
                     alt={img.alt}
                     fill
-                    className="object-cover"
+                    className="object-cover group-hover:scale-110 transition-transform duration-500"
                     sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
                   />
+                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
                 </button>
               ))}
             </div>
@@ -276,19 +283,22 @@ export default function Home() {
         </section>
 
         {/* Songs Section */}
-        <section id="songs" className="py-16 px-4 bg-white dark:bg-gray-950">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white">
-              Songs
-            </h2>
-            <div className="space-y-8">
+        <section id="songs" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950">
+          <div className="max-w-5xl mx-auto">
+            <div className="text-center mb-12">
+              <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                Songs
+              </h2>
+              <div className="h-1 w-20 bg-gray-300 dark:bg-gray-700 mx-auto rounded-full"></div>
+            </div>
+            <div className="space-y-10">
               {/* Song 3 */}
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6">
-                <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white text-center">
+              <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-gray-900 dark:text-white text-center">
                   Song 3 - Our Strength, Our Hope, Our Confidence
                 </h3>
-                <p className="italic text-sm text-gray-600 dark:text-gray-400 mb-6 text-center">(Opening Song - Proverbs 14:26)</p>
-                <div className="text-gray-700 dark:text-gray-300 leading-relaxed text-center max-w-2xl mx-auto">
+                <p className="italic text-sm text-gray-600 dark:text-gray-400 mb-8 text-center">(Opening Song - Proverbs 14:26)</p>
+                <div className="text-gray-700 dark:text-gray-300 leading-loose text-center max-w-2xl mx-auto">
 
                   <div className="mb-6">
                     <p className="font-semibold mb-3 text-gray-900 dark:text-white">Verse 1</p>
@@ -302,8 +312,8 @@ export default function Home() {
                     <p className="mb-1">has suddenly grown dim.</p>
                   </div>
 
-                  <div className="mb-6 py-4 bg-white dark:bg-gray-950 rounded">
-                    <p className="font-semibold mb-3 text-gray-900 dark:text-white">(CHORUS)</p>
+                  <div className="mb-6 py-6 px-4 bg-white dark:bg-gray-950 rounded-xl border-l-4 border-gray-400 dark:border-gray-600">
+                    <p className="font-semibold mb-4 text-gray-900 dark:text-white">(CHORUS)</p>
                     <p className="mb-1">You&apos;re our strength, you&apos;re our hope,</p>
                     <p className="mb-1">you&apos;re our confidence.</p>
                     <p className="mb-1">Whatever we lack, you supply.</p>
@@ -324,8 +334,8 @@ export default function Home() {
                     <p className="mb-1">to speak about your name.</p>
                   </div>
 
-                  <div className="py-4 bg-white dark:bg-gray-950 rounded">
-                    <p className="font-semibold mb-3 text-gray-900 dark:text-white">(CHORUS)</p>
+                  <div className="py-6 px-4 bg-white dark:bg-gray-950 rounded-xl border-l-4 border-gray-400 dark:border-gray-600">
+                    <p className="font-semibold mb-4 text-gray-900 dark:text-white">(CHORUS)</p>
                     <p className="mb-1">You&apos;re our strength, you&apos;re our hope,</p>
                     <p className="mb-1">you&apos;re our confidence.</p>
                     <p className="mb-1">Whatever we lack, you supply.</p>
@@ -337,12 +347,12 @@ export default function Home() {
               </div>
 
               {/* Song 151 */}
-              <div className="bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-6">
-                <h3 className="text-2xl font-semibold mb-2 text-gray-900 dark:text-white text-center">
+              <div className="bg-gray-50 dark:bg-gray-900 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 md:p-10 shadow-lg hover:shadow-xl transition-shadow duration-300">
+                <h3 className="text-2xl md:text-3xl font-semibold mb-3 text-gray-900 dark:text-white text-center">
                   Song 151 - He Will Call
                 </h3>
-                <p className="italic text-sm text-gray-600 dark:text-gray-400 mb-6 text-center">(Closing Song - Job 14:13-15)</p>
-                <div className="text-gray-700 dark:text-gray-300 leading-relaxed text-center max-w-2xl mx-auto">
+                <p className="italic text-sm text-gray-600 dark:text-gray-400 mb-8 text-center">(Closing Song - Job 14:13-15)</p>
+                <div className="text-gray-700 dark:text-gray-300 leading-loose text-center max-w-2xl mx-auto">
 
                   <div className="mb-6">
                     <p className="font-semibold mb-3 text-gray-900 dark:text-white">Verse 1</p>
@@ -354,8 +364,8 @@ export default function Home() {
                     <p className="mb-1">Hear the promise God has made:</p>
                   </div>
 
-                  <div className="mb-6 py-4 bg-white dark:bg-gray-950 rounded">
-                    <p className="font-semibold mb-3 text-gray-900 dark:text-white">(CHORUS)</p>
+                  <div className="mb-6 py-6 px-4 bg-white dark:bg-gray-950 rounded-xl border-l-4 border-gray-400 dark:border-gray-600">
+                    <p className="font-semibold mb-4 text-gray-900 dark:text-white">(CHORUS)</p>
                     <p className="mb-1">He will call; The dead will answer.</p>
                     <p className="mb-1">They will live at his command.</p>
                     <p className="mb-1">For he will have a longing</p>
@@ -376,8 +386,8 @@ export default function Home() {
                     <p className="mb-1">Paradise eternally.</p>
                   </div>
 
-                  <div className="py-4 bg-white dark:bg-gray-950 rounded">
-                    <p className="font-semibold mb-3 text-gray-900 dark:text-white">(CHORUS)</p>
+                  <div className="py-6 px-4 bg-white dark:bg-gray-950 rounded-xl border-l-4 border-gray-400 dark:border-gray-600">
+                    <p className="font-semibold mb-4 text-gray-900 dark:text-white">(CHORUS)</p>
                     <p className="mb-1">He will call; The dead will answer.</p>
                     <p className="mb-1">They will live at his command.</p>
                     <p className="mb-1">For he will have a longing</p>
@@ -394,32 +404,35 @@ export default function Home() {
         </section>
 
         {/* Program Section */}
-        <section id="program" className="py-16 px-4 bg-white dark:bg-gray-950">
+        <section id="program" className="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
           <div className="max-w-4xl mx-auto">
-            <h2 className="text-4xl font-bold mb-8 text-center text-gray-900 dark:text-white">
-              Program
-            </h2>
-            <div className="bg-gray-50 dark:bg-gray-900 rounded-lg border border-gray-200 dark:border-gray-800 p-8">
-              <div className="space-y-4">
-                <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-3">
-                  <span className="font-semibold text-gray-900 dark:text-white">Chairman&apos;s remarks</span>
-                  <span className="text-gray-600 dark:text-gray-400">9:00 am</span>
+            <div className="text-center mb-12">
+              <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
+                Program
+              </h2>
+              <div className="h-1 w-20 bg-gray-300 dark:bg-gray-700 mx-auto rounded-full"></div>
+            </div>
+            <div className="bg-white dark:bg-gray-950 rounded-2xl border border-gray-200 dark:border-gray-800 p-8 md:p-10 shadow-lg">
+              <div className="space-y-6">
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
+                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Chairman&apos;s remarks</span>
+                  <span className="text-gray-600 dark:text-gray-400 font-medium">9:00 am</span>
                 </div>
-                <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-3">
-                  <span className="font-semibold text-gray-900 dark:text-white">Opening song 3 and prayer</span>
-                  <span className="text-gray-600 dark:text-gray-400">9:05 am</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
+                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Opening song 3 and prayer</span>
+                  <span className="text-gray-600 dark:text-gray-400 font-medium">9:05 am</span>
                 </div>
-                <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-3">
-                  <span className="font-semibold text-gray-900 dark:text-white">Funeral discourse</span>
-                  <span className="text-gray-600 dark:text-gray-400">9:10 am</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
+                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Funeral discourse</span>
+                  <span className="text-gray-600 dark:text-gray-400 font-medium">9:10 am</span>
                 </div>
-                <div className="flex justify-between items-center border-b border-gray-200 dark:border-gray-800 pb-3">
-                  <span className="font-semibold text-gray-900 dark:text-white">Closing song 151 and prayer</span>
-                  <span className="text-gray-600 dark:text-gray-400">9:40 am</span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 border-b border-gray-200 dark:border-gray-800 pb-4 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 transition-colors duration-200 rounded-lg">
+                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Closing song 151 and prayer</span>
+                  <span className="text-gray-600 dark:text-gray-400 font-medium">9:40 am</span>
                 </div>
-                <div className="flex justify-between items-center">
-                  <span className="font-semibold text-gray-900 dark:text-white">Chairman&apos;s closing remarks</span>
-                  <span className="text-gray-600 dark:text-gray-400"></span>
+                <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-2 hover:bg-gray-50 dark:hover:bg-gray-900/50 -mx-4 px-4 py-2 transition-colors duration-200 rounded-lg">
+                  <span className="font-semibold text-gray-900 dark:text-white text-lg">Chairman&apos;s closing remarks</span>
+                  <span className="text-gray-600 dark:text-gray-400 font-medium"></span>
                 </div>
               </div>
             </div>
