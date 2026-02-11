@@ -1,9 +1,6 @@
-'use client';
-
-import Image from "next/image";
 import { useEffect, useState, useRef } from 'react';
 
-export default function Home() {
+export default function App() {
   const [lightbox, setLightbox] = useState<{ open: boolean; src: string; alt: string; index: number }>({
     open: false, src: '', alt: '', index: -1
   });
@@ -15,7 +12,7 @@ export default function Home() {
   const prevFocusRef = useRef<HTMLElement | null>(null);
   const closeBtnRef = useRef<HTMLButtonElement | null>(null);
 
-  const basePath = process.env.NODE_ENV === 'production' ? '/theresa-nkpati' : '';
+  const basePath = import.meta.env.PROD ? '/theresa-nkpati' : '';
 
   const images = [
     { src: `${basePath}/img/1.jpeg`, alt: 'Theresa Yawa Nkpati 1' },
@@ -195,13 +192,10 @@ export default function Home() {
               <div className="mx-auto md:mx-0 md:sticky md:top-24 animate-slide-in-left">
                 <div className="w-full max-w-md">
                   <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-gray-900/5 dark:ring-white/10">
-                    <Image
+                    <img
                       src="/img/1.jpeg"
                       alt="Theresa Yawa Nkpati"
-                      width={420}
-                      height={420}
                       className="w-full object-cover"
-                      priority
                     />
                   </div>
                   <p className="text-base sm:text-lg italic text-gray-700 dark:text-gray-300 mt-8 text-center leading-relaxed px-4">
@@ -268,12 +262,10 @@ export default function Home() {
                   onClick={() => onOpenLightboxAt(i)}
                   className="group relative aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 dark:focus:ring-white ring-1 ring-gray-900/5 dark:ring-white/10"
                 >
-                  <Image
+                  <img
                     src={img.src}
                     alt={img.alt}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                   />
                   <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
                 </button>
@@ -455,11 +447,9 @@ export default function Home() {
             ✕
           </button>
           <div className="relative max-w-4xl max-h-full" onClick={(e) => e.stopPropagation()}>
-            <Image
+            <img
               src={lightbox.src}
               alt={lightbox.alt}
-              width={1200}
-              height={1200}
               className="max-h-[90vh] w-auto object-contain"
             />
           </div>
