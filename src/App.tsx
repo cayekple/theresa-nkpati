@@ -20,7 +20,6 @@ export default function App() {
       title: 'Picture of the Deceased',
       images: [
         { src: `${basePath}/img/1.jpeg`, alt: 'Theresa Yawa Nkpati' },
-        { src: `${basePath}/img/3.jpeg`, alt: 'Theresa Yawa Nkpati' },
         { src: `${basePath}/img/7.jpeg`, alt: 'Theresa Yawa Nkpati' },
       ]
     },
@@ -28,6 +27,7 @@ export default function App() {
       title: 'Daughters',
       images: [
         { src: `${basePath}/img/2.jpeg`, alt: 'Daughters of Theresa Yawa Nkpati' },
+        { src: `${basePath}/img/3.jpeg`, alt: 'Daughters of Theresa Yawa Nkpati' },
         { src: `${basePath}/img/4.jpeg`, alt: 'Daughters of Theresa Yawa Nkpati' },
       ]
     },
