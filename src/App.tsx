@@ -15,16 +15,34 @@ export default function App() {
 
   const basePath = import.meta.env.PROD ? '/theresa-nkpati' : '';
 
-  const images = [
-    { src: `${basePath}/img/1.jpeg`, alt: 'Theresa Yawa Nkpati 1' },
-    { src: `${basePath}/img/2.jpeg`, alt: 'Theresa Yawa Nkpati 2' },
-    { src: `${basePath}/img/3.jpeg`, alt: 'Theresa Yawa Nkpati 3' },
-    { src: `${basePath}/img/4.jpeg`, alt: 'Theresa Yawa Nkpati 4' },
-    { src: `${basePath}/img/5.jpeg`, alt: 'Theresa Yawa Nkpati 5' },
-    { src: `${basePath}/img/6.jpeg`, alt: 'Theresa Yawa Nkpati 6' },
-    { src: `${basePath}/img/7.jpeg`, alt: 'Theresa Yawa Nkpati 7' },
-    { src: `${basePath}/img/8.jpeg`, alt: 'Theresa Yawa Nkpati 8' },
+  const galleryCategories = [
+    {
+      title: 'Picture of the Deceased',
+      images: [
+        { src: `${basePath}/img/1.jpeg`, alt: 'Theresa Yawa Nkpati' },
+        { src: `${basePath}/img/3.jpeg`, alt: 'Theresa Yawa Nkpati' },
+        { src: `${basePath}/img/7.jpeg`, alt: 'Theresa Yawa Nkpati' },
+      ]
+    },
+    {
+      title: 'Daughters',
+      images: [
+        { src: `${basePath}/img/2.jpeg`, alt: 'Daughters of Theresa Yawa Nkpati' },
+        { src: `${basePath}/img/4.jpeg`, alt: 'Daughters of Theresa Yawa Nkpati' },
+      ]
+    },
+    {
+      title: 'Grandchildren',
+      images: [
+        { src: `${basePath}/img/3.jpeg`, alt: 'Grandchildren of Theresa Yawa Nkpati' },
+        { src: `${basePath}/img/5.jpeg`, alt: 'Grandchildren of Theresa Yawa Nkpati' },
+        { src: `${basePath}/img/6.jpeg`, alt: 'Grandchildren of Theresa Yawa Nkpati' },
+        { src: `${basePath}/img/8.jpeg`, alt: 'Grandchildren of Theresa Yawa Nkpati' },
+      ]
+    },
   ];
+
+  const allImages = galleryCategories.flatMap(cat => cat.images);
 
   useEffect(() => {
     const root = document.documentElement;
@@ -35,7 +53,7 @@ export default function App() {
 
   const onOpenLightboxAt = (index: number) => {
     prevFocusRef.current = document.activeElement as HTMLElement;
-    const item = images[index];
+    const item = allImages[index];
     if (!item) return;
     setLightbox({ open: true, src: item.src, alt: item.alt, index });
   };
@@ -57,16 +75,16 @@ export default function App() {
         onCloseLightbox();
       } else if (e.key === 'ArrowRight') {
         e.preventDefault();
-        if (images.length > 1) {
-          const next = (lightbox.index + 1 + images.length) % images.length;
-          const item = images[next];
+        if (allImages.length > 1) {
+          const next = (lightbox.index + 1 + allImages.length) % allImages.length;
+          const item = allImages[next];
           setLightbox({ open: true, src: item.src, alt: item.alt, index: next });
         }
       } else if (e.key === 'ArrowLeft') {
         e.preventDefault();
-        if (images.length > 1) {
-          const prev = (lightbox.index - 1 + images.length) % images.length;
-          const item = images[prev];
+        if (allImages.length > 1) {
+          const prev = (lightbox.index - 1 + allImages.length) % allImages.length;
+          const item = allImages[prev];
           setLightbox({ open: true, src: item.src, alt: item.alt, index: prev });
         }
       }
@@ -75,7 +93,7 @@ export default function App() {
       window.addEventListener('keydown', onKey);
     }
     return () => window.removeEventListener('keydown', onKey);
-  }, [lightbox.open, lightbox.index, images]);
+  }, [lightbox.open, lightbox.index, allImages]);
 
   useEffect(() => {
     let ticking = false;
@@ -426,27 +444,44 @@ export default function App() {
         {/* Gallery Section */}
         <section id="gallery" className="py-20 px-4 sm:px-6 lg:px-8 bg-white dark:bg-gray-950">
           <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-12">
+            <div className="text-center mb-16">
               <h2 className="text-4xl sm:text-5xl font-bold mb-4 text-gray-900 dark:text-white">
                 Gallery
               </h2>
               <div className="h-1 w-20 bg-gray-300 dark:bg-gray-700 mx-auto rounded-full"></div>
             </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
-              {images.map((img, i) => (
-                <button
-                  key={i}
-                  onClick={() => onOpenLightboxAt(i)}
-                  className="group relative aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 dark:focus:ring-white ring-1 ring-gray-900/5 dark:ring-white/10"
-                >
-                  <img
-                    src={img.src}
-                    alt={img.alt}
-                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
-                </button>
-              ))}
+
+            {/* Gallery Categories */}
+            <div className="space-y-16">
+              {galleryCategories.map((category, catIndex) => {
+                const startIndex = galleryCategories.slice(0, catIndex).reduce((sum, cat) => sum + cat.images.length, 0);
+                return (
+                  <div key={catIndex}>
+                    <h3 className="text-2xl sm:text-3xl font-semibold mb-6 text-gray-900 dark:text-white text-center">
+                      {category.title}
+                    </h3>
+                    <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                      {category.images.map((img, imgIndex) => {
+                        const globalIndex = startIndex + imgIndex;
+                        return (
+                          <button
+                            key={imgIndex}
+                            onClick={() => onOpenLightboxAt(globalIndex)}
+                            className="group relative aspect-square overflow-hidden rounded-xl shadow-md hover:shadow-2xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-gray-900 focus:ring-offset-2 dark:focus:ring-white ring-1 ring-gray-900/5 dark:ring-white/10"
+                          >
+                            <img
+                              src={img.src}
+                              alt={img.alt}
+                              className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                            />
+                            <div className="absolute inset-0 bg-black/0 group-hover:bg-black/10 transition-colors duration-300"></div>
+                          </button>
+                        );
+                      })}
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
         </section>
@@ -530,13 +565,13 @@ export default function App() {
               className="max-h-[90vh] w-auto object-contain"
             />
           </div>
-          {images.length > 1 && (
+          {allImages.length > 1 && (
             <>
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  const prev = (lightbox.index - 1 + images.length) % images.length;
-                  const item = images[prev];
+                  const prev = (lightbox.index - 1 + allImages.length) % allImages.length;
+                  const item = allImages[prev];
                   setLightbox({ open: true, src: item.src, alt: item.alt, index: prev });
                 }}
                 className="absolute left-4 text-white text-4xl w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white"
@@ -547,8 +582,8 @@ export default function App() {
               <button
                 onClick={(e) => {
                   e.stopPropagation();
-                  const next = (lightbox.index + 1) % images.length;
-                  const item = images[next];
+                  const next = (lightbox.index + 1) % allImages.length;
+                  const item = allImages[next];
                   setLightbox({ open: true, src: item.src, alt: item.alt, index: next });
                 }}
                 className="absolute right-4 text-white text-4xl w-12 h-12 flex items-center justify-center rounded-full hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white"
