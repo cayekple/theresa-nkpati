@@ -218,7 +218,7 @@ export default function App() {
                 <div className="w-full max-w-md">
                   <div className="relative overflow-hidden rounded-2xl shadow-2xl ring-1 ring-gray-900/5 dark:ring-white/10">
                     <img
-                      src={`${basePath}/img/1.jpeg`}
+                      src={`${basePath}/img/7.jpeg`}
                       alt="Theresa Yawa Nkpati"
                       className="w-full object-cover"
                     />
