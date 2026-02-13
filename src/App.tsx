@@ -19,7 +19,6 @@ export default function App() {
     {
       title: 'Picture of the Deceased',
       images: [
-        { src: `${basePath}/img/1.jpeg`, alt: 'Theresa Yawa Nkpati' },
         { src: `${basePath}/img/7.jpeg`, alt: 'Theresa Yawa Nkpati' },
       ]
     },
