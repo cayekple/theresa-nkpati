@@ -202,13 +202,16 @@ export default function App() {
               </p>
               <div className="max-w-2xl mx-auto space-y-2">
                 <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 font-medium">
-                  📍 Venue: <a
+                  📍 Venue: Kwamekrom Kingdom Hall
+                </p>
+                <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 font-medium">
+                  <a
                     href="https://maps.google.com/?q=7.293989,0.324270"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="underline hover:text-gray-900 dark:hover:text-white transition-colors"
                   >
-                    Kwamekrom Kingdom Hall
+                    Get directions to the venue
                   </a>
                 </p>
                 <p className="text-lg sm:text-xl text-gray-700 dark:text-gray-300 font-medium">
